@@ -4,7 +4,7 @@ using UnityEngine.UI;//注意这个不能少
 using UnityEngine.SceneManagement;
 public class start_button : MonoBehaviour
 {
-    public object ScenceMangerment { get; private set; }
+  
 
     // Use this for initialization  
     void Start()
