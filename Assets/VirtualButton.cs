@@ -6,7 +6,7 @@ using Vuforia;
 public class VirtualButton : MonoBehaviour, IVirtualButtonEventHandler
 {
 
-    Material mat;
+   // Material mat;
     Vector3 des;
     bool hasbeenchanged = false;
 
@@ -25,7 +25,7 @@ public class VirtualButton : MonoBehaviour, IVirtualButtonEventHandler
         Cat.SetBool("walk", true);
         des = transform.GetChild(buttonNum + 1).localPosition; //将当前vb位置设置为终点位置
 
-        mat.color = Color.red;
+        //mat.color = Color.red;
 
         GameObject pfb = Resources.Load("Hit_01") as GameObject;
         GameObject prefabInstance = Instantiate(pfb);
@@ -70,13 +70,13 @@ public class VirtualButton : MonoBehaviour, IVirtualButtonEventHandler
     //按钮释放
     public void OnButtonReleased(VirtualButtonBehaviour vb)
     {
-        mat.color = Color.yellow;
+      //  mat.color = Color.yellow;
     }
 
     void Start()
     {
         
-        mat = transform.GetChild(0).GetComponent<MeshRenderer>().material;
+       // mat = transform.GetChild(0).GetComponent<MeshRenderer>().material;
 
         des = transform.GetChild(1).localPosition;
         des = new Vector3(des.x, des.y , des.z);
@@ -96,7 +96,7 @@ public class VirtualButton : MonoBehaviour, IVirtualButtonEventHandler
         {
             Cat.SetBool("walk", false);
             Cat.SetBool("walk_to_idle", true);
-            mat.color = Color.black;
+        //    mat.color = Color.black;
             if (hasbeenchanged == false)
             {
                 transform.GetChild(1).localEulerAngles = new Vector3(0, -180, 0);
@@ -110,7 +110,9 @@ public class VirtualButton : MonoBehaviour, IVirtualButtonEventHandler
             Vector3 rotateVector = des - src;
             q = Quaternion.LookRotation(rotateVector);
             transform.GetChild(1).rotation = q;
-      
+
+            //NavMeshAgent aget = transform.GetChild(1).GetComponent<NavMeshAgent>();
+            //aget.destination = Vector3.MoveTowards(aget.destination, des, 0.1f * Time.deltaTime);
             transform.GetChild(1).localPosition = Vector3.MoveTowards(transform.GetChild(1).localPosition, des, 0.1f * Time.deltaTime);
         }
     }
